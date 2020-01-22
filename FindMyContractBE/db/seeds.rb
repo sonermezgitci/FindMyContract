@@ -1,3 +1,7 @@
+Contract.destroy_all
+Player.destroy_all
+Team.destroy_all
+
 p1 =Player.create(name:"Kadeem Allen",age:27,nationality:"USA",appearance:9,assist:19,rebound:8,points:44,salary:"$79,568",image_url:"https://d2cwpp38twqe55.cloudfront.net/req/202001171/images/players/allenka01.jpg",youtube_url:"https://www.youtube.com/embed/uyvLyl3vu-s ",likes:10)
 p2 =Player.create(name:"RJ Barrett",age:19,nationality:"USA",appearance:41,assist:101 ,rebound:215 ,points:578 ,salary:"$7,839,960",image_url:"https://usathoopshype.files.wordpress.com/2019/04/i_e2_6a_6e_rj-barrett.png?w=190",youtube_url:"https://www.youtube.com/embed/_5EplimcGOE",likes:300)
 p3 =Player.create(name:"Ignas Brazdeikis",age:21,nationality:"USA",appearance:9,assist:5 ,rebound:4 ,points:17 ,salary:"$898,310",image_url:"https://www.gannett-cdn.com/presto/2019/06/07/PIND/3674fd16-68f0-41a5-aabd-2d66814eaac3-USATSI_12278395.jpg?width=540&height=&fit=bounds&auto=webp",youtube_url:"https://www.youtube.com/embed/VhRpGoFy6TM",likes:650)
