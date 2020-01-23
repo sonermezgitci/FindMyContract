@@ -23,7 +23,45 @@ let teamObj;
 
                 const newPlayerLi= document.createElement("li")
                 newPlayerLi.innerText = player.name
-                PlayerList.append(newPlayerLi)
+               newPlayerLi.addEventListener("click",function(evt){
+                   renderUpdatedForm(player,teamObj)
+
+                   const updatePlayerForm =document.querySelector("#updatedPlayerdiv")
+                    updatePlayerForm.addEventListener("submit",(event)=>{
+                    event.preventDefault()
+    fetch(`http://localhost:3000/players/${player.id}`,{
+        method:'PATCH',
+        headers: {
+            "Content-Type": "application/json",
+            Accept:"application/json"
+        },
+        body:JSON.stringify({
+            name:event.target.name.value,
+            age:event.target.age.value,
+            nationality:event.target.nationality.value,
+            // team_id: teamObj.id
+            // here is the new person make a new player this what we are sending to our data 
+        })
+    })
+    .then(r=>r.json())
+    .then(updatedPlayer => {
+        
+        teamObj.players.push(updatedPlayer);
+        const PlayerList= document.querySelector("#player")
+        // PlayerList.innerHTML = ""
+        // teamObj.players.forEach(player=>{
+            const updatedPlayerLi= document.createElement("li")
+            updatedPlayerLi.innerText = updatedPlayer.name
+            PlayerList.append(updatedPlayerLi)
+        // })
+    })
+})
+                   //why we crate a from here because when we click to player we should update form
+                   //and updated form need to know about playerOBJ.renderupdatedform(player)already know about player
+
+
+            })
+            PlayerList.append(newPlayerLi)
                })     
             })//event teamLI           
         })
@@ -51,12 +89,54 @@ playerForm.addEventListener("submit",(event)=>{
     .then(r=>r.json())
     .then(newPlayer => {
     teamObj.players.push(newPlayer);
-    const PlayerList= document.querySelector("#player")
+    const PlayerList = document.querySelector("#player")
     // PlayerList.innerHTML = ""
         // teamObj.players.forEach(player=>{
-            const newPlayerLi= document.createElement("li")
-            newPlayerLi.innerText = newPlayer.name
-            PlayerList.append(newPlayerLi)
+            
+            const teamDiv = document.querySelector("ol")
+            const newTeamLi= document.createElement('li') 
+            newTeamLi.innerText = team.name
+            teamDiv.append(newTeamLi) 
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // const newPlayerLi= document.createElement("li")
+            // newPlayerLi.innerText = newPlayer.name
+            // PlayerList.append(newPlayerLi)
         // })
     })
 })
+
+
+function renderUpdatedForm(player, teamobj){
+
+    const PlayerDiv = document.querySelector("#updatedPlayerdiv")
+    PlayerDiv.innerHTML = ""
+
+    let newUpdatedPlayerDiv = document.createElement("div")
+    newUpdatedPlayerDiv.innerHTML =`<form id="updatePlayer">
+    Name:<br>
+    <input type="text" name="name" value =""><br>
+    Age:<br>
+    <input type="text" name="age">
+    </br>
+    Natinoality:<br>
+    <input type="text" name="nationality"><br>
+    <button>submit</button>
+    
+    </form> `
+    PlayerDiv.append(newUpdatedPlayerDiv)
+}
+// formDiv.innerHTML = ""
+
+
+

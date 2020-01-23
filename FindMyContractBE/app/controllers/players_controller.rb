@@ -10,6 +10,7 @@ class PlayersController < ApplicationController
         @team = Team.find(params[:team_id])
         @player = Player.create(create_player_params)
         @player.teams.push(@team)
+        # we are adding to team to players list of team
         # @team.players.push(@player)
         # if @player.valid 
       
@@ -29,8 +30,8 @@ class PlayersController < ApplicationController
     end
 
     def update 
-        @player = Player.find(params[:id])
-        @player.update(edir_player_params)
+       @player = Player.find(params[:id])
+        @player.update(edit_player_params)
         render json: @player
     end
 
@@ -47,7 +48,7 @@ class PlayersController < ApplicationController
  
     private 
     def edit_player_params
-        params.require(:likes)
+        params.permit(:name,:nationality,:age)
     end 
  
  def create_player_params
