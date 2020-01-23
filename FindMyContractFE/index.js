@@ -8,8 +8,8 @@ let teamObj;
 .then(r=> r.json())
 .then(teams =>{
     teams.forEach(team =>{
-            const teamDiv =document.querySelector("ol")
-            const newTeamLi=document.createElement('li') 
+            const teamDiv = document.querySelector("ol")
+            const newTeamLi = document.createElement('li') 
             newTeamLi.innerText = team.name
 
             teamDiv.append(newTeamLi) 
@@ -17,7 +17,7 @@ let teamObj;
             newTeamLi.addEventListener("click",function(evt){
                 teamObj = team
                 // console.log(teamId)
-               const PlayerList= document.querySelector("#player")
+               const PlayerList = document.querySelector("#player")
                PlayerList.innerHTML = ""
                team.players.forEach(player=>{
 
@@ -47,12 +47,14 @@ let teamObj;
     .then(updatedPlayer => {
         
         teamObj.players.push(updatedPlayer);
-        const PlayerList= document.querySelector("#player")
+        newPlayerLi.innerText = updatedPlayer.name
+
+        // const PlayerList= document.querySelector("#player")
         // PlayerList.innerHTML = ""
         // teamObj.players.forEach(player=>{
-            const updatedPlayerLi= document.createElement("li")
-            updatedPlayerLi.innerText = updatedPlayer.name
-            PlayerList.append(updatedPlayerLi)
+            // const updatedPlayerLi= document.createElement("li")
+            // updatedPlayerLi.innerText = updatedPlayer.name
+            // PlayerList.append(updatedPlayerLi)
         // })
     })
 })
@@ -93,22 +95,11 @@ playerForm.addEventListener("submit",(event)=>{
     // PlayerList.innerHTML = ""
         // teamObj.players.forEach(player=>{
             
-            const teamDiv = document.querySelector("ol")
-            const newTeamLi= document.createElement('li') 
-            newTeamLi.innerText = team.name
-            teamDiv.append(newTeamLi) 
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+            const updatedPlayerDiv = document.querySelector("ol")
+            const updatedPlayerLi= document.createElement('li') 
+            updatedPlayerDiv.innerText = team.name
+            updatedPlayerDiv.append(updatedPlayerLi) 
+
         // const newPlayerLi= document.createElement("li")
             // newPlayerLi.innerText = newPlayer.name
             // PlayerList.append(newPlayerLi)
